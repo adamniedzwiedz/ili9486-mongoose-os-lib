@@ -1,0 +1,20 @@
+author: adamniedzwiedz <niedzwiedz.adam@gmail.com>
+type: lib
+description: Arduino Adafruit TFT LCD
+version: 1.0
+
+sources:
+  - src
+
+includes:
+  - include
+
+libs:
+  - origin: https://github.com/mongoose-os-libs/arduino-compat
+  - origin: https://github.com/mongoose-os-libs/arduino-adafruit-gfx
+
+tags:
+  - c
+  - hw
+
+manifest_version: 2017-09-29
