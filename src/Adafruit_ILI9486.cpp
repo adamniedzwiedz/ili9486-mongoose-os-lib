@@ -44,13 +44,13 @@ static const uint8_t ILI9486_regValues[] = {
   TFTLCD_DELAY, 150,                  // delay 150ms
   0x28, 0,                            // display off
   0x3A, 1, 0x55,                      // set pixel format
-  0xC0, 2, 0x0d, 0x0d,                // Power Control 1
-  0xC1, 2, 0x43, 0x00,                // Power Control 2
-  0xC2, 1, 0x00,                      // Power Control 3
+  //0xC0, 2, 0x0d, 0x0d,                // Power Control 1
+  //0xC1, 2, 0x43, 0x00,                // Power Control 2
+  //0xC2, 1, 0x00,                      // Power Control 3
   0xC5, 4, 0x00, 0x48, 0x00, 0x48,    // VCOM  Control
   0xB4, 1, 0x00,                      // Display Inversion Control
   0xB6, 3, 0x02, 0x02, 0x3B,          // Display Function Control
-  0xB1, 2, 0xB0, 0x11,                // Frame Rate Control
+  //0xB1, 2, 0xB0, 0x11,                // Frame Rate Control
   // Positive Gamma Correction
   0xE0, 15, 0x0F, 0x1B, 0x18, 0x0B, 0x0E, 0x09, 0x47, 0x94, 0x35, 0x0A, 0x13, 0x05, 0x08, 0x03, 0x00, 
   // Negative Gamma Correction
@@ -108,7 +108,7 @@ void Adafruit_ILI9486::reset(void)
   delay(60);
   digitalWrite(LCD_RST, HIGH);
   delay(120);
-  
+
   CS_IDLE;
 }
 
