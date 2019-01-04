@@ -102,15 +102,13 @@ void Adafruit_ILI9486::reset(void)
   WR_IDLE;
   RD_IDLE;
 
-  digitalWrite(LCD_RST, LOW);
-  delay(2);
   digitalWrite(LCD_RST, HIGH);
-
-  CS_ACTIVE;
-  CD_COMMAND;
-
-  write8(0x00);
-  for(uint8_t i=0; i<3; i++) WR_STROBE; // Three extra 0x00s
+  delay(20);
+  digitalWrite(LCD_RST, LOW);
+  delay(60);
+  digitalWrite(LCD_RST, HIGH);
+  delay(120);
+  
   CS_IDLE;
 }
 
