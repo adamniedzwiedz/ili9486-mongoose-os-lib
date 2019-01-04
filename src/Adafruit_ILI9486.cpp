@@ -40,22 +40,27 @@ static const uint8_t LCD_DATA[8] = { 12, 13, 26, 25, 17, 16, 27, 14};
 #define pgm_read_byte(addr) (*(const unsigned char *)(addr))
 
 static const uint8_t ILI9486_regValues[] = {
-  0x11, 0,                   // exit sleep mode
-	TFTLCD_DELAY, 50,          // delay 50ms
-	0xC0, 2, 0x07, 0x07,       // power control1
-	0xC1, 2, 0x42, 0x07,       // power control1
-	0xC5, 4, 0x00, 0x24, 0x80, 0x00, // VCOM control
-	0xC2, 1, 0x43,             // power setting for normal mode
-	0xB6, 3, 0x08, 0x01, 0x3B, // panel driving setting
-	0xB1, 2, 0xF0, 0x00,       // frame rate and inversion control
-	0x34, 0,                   // set tear off
-  0x36, 1, 0x88,             // set address mode 
-	0x3A, 1, 0x55,             // set pixel format
-	0x2A, 4, 0x00, 0x00,0x01,0x3F, // set column address
-	0x2B, 4, 0x00, 0x00,0x01,0xE0, // set page address
-	TFTLCD_DELAY, 120,	
-	0x29, 0,                   // set display on
-	0x2C, 0,                   // write memory start		
+  0x01, 0,                            // soft reset
+  TFTLCD_DELAY, 150,                  // delay 150ms
+  0x28, 0,                            // display off
+  0x3A, 1, 0x55,                      // set pixel format
+  0xC0, 2, 0x0d, 0x0d,                // Power Control 1
+  0xC1, 2, 0x43, 0x00,                // Power Control 2
+  0xC2, 1, 0x00,                      // Power Control 3
+  0xC5, 4, 0x00, 0x48, 0x00, 0x48,    // VCOM  Control
+  0xB4, 1, 0x00,                      // Display Inversion Control
+  0xB6, 3, 0x02, 0x02, 0x3B,          // Display Function Control
+  // Positive Gamma Correction
+  0xE0, 15, 0x0F, 0x1B, 0x18, 0x0B, 0x0E, 0x09, 0x47, 0x94, 0x35, 0x0A, 0x13, 0x05, 0x08, 0x03, 0x00, 
+  // Negative Gamma Correction
+  0xE1, 15, 0x0F, 0x3A, 0x37, 0x0B, 0x0C, 0x05, 0x4A, 0x24, 0x39, 0x07, 0x10, 0x04, 0x27, 0x25, 0x00, 
+  0x11, 0,                            // exit sleep mode
+	TFTLCD_DELAY, 150,                  // delay 150ms
+  0x29, 0,                            // set display on
+	0x2A, 4, 0x00, 0x00,0x01,0x3F,      // set column address
+	0x2B, 4, 0x00, 0x00,0x01,0xE0,      // set page address
+	TFTLCD_DELAY, 120,	                // delay 120ms
+	0x2C, 0,                            // write memory start		
 };
 
 Adafruit_ILI9486::Adafruit_ILI9486(void) : Adafruit_GFX(TFTWIDTH, TFTHEIGHT) 
